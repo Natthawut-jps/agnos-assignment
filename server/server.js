@@ -10,7 +10,7 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
    createServer((req, res) => {
       handle(req, res)
-   }).listen(port)
+   }).listen(port, "0.0.0.0")
    
    console.log(
       `> Server listening at http://localhost:${port} as ${
