@@ -24,7 +24,7 @@ app.prepare().then(() => {
 
 
 const io = new Server(4000, {
-   transports: ["websocket", "polling"],
+   transports: ["websocket"],
    cors: { origin: "*" }
 })
 
