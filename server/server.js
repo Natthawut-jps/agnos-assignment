@@ -22,6 +22,7 @@ app.prepare().then(() => {
 import { Server } from "socket.io"
 
 const io = new Server(4000, {
+   transports: ["websocket", "polling"],
    cors: { origin: "*" }
 })
 
