@@ -11,39 +11,38 @@ const handle = app.getRequestHandler()
 
 
 app.prepare().then(() => {
-   createServer((req, res) => {
+   const httpServer = createServer((req, res) => {
       handle(req, res)
-   }).listen(port, "0.0.0.0")
-   
-   console.log(
-      `> Server listening at http://localhost:${port} as ${
-         dev ? 'development' : process.env.NODE_ENV
-      }`
-   )
-})
+   })
 
+   const io = new Server(httpServer, {
+      transports: ["websocket", "polling"],
+      cors: { origin: "*" }
+   })
 
-const io = new Server(4000, {
-   transports: ["websocket"],
-   cors: { origin: "*" }
-})
+   io.on("connection", (socket) => {
 
-io.on("connection", (socket) => {
+      console.log("client connected")
 
-   console.log("client connected")
+      socket.on("patient:update", (data) => {
 
-   socket.on("patient:update", (data) => {
+         socket.broadcast.emit("patient:update", data)
 
-      socket.broadcast.emit("patient:update", data)
+      })
+
+      socket.on("patient:get", () => {
+         socket.broadcast.emit("patient:get")
+      })
+
+      socket.on("patient:data", (data) => {
+         socket.broadcast.emit("patient:data", data)
+      })
 
    })
 
-   socket.on("patient:get", () => {
-      socket.broadcast.emit("patient:get")
-   })
-   
-   socket.on("patient:data", (data) => {
-      socket.broadcast.emit("patient:data", data)
-   })
+   httpServer.listen(port, "0.0.0.0", () => {
 
+      console.log(
+         `> Server listening at http://localhost:${port} as ${dev ? 'development' : process.env.NODE_ENV}`)
+   })
 })
