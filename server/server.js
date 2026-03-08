@@ -1,11 +1,14 @@
 
 import { createServer } from 'http'
 import next from 'next'
+import { Server } from "socket.io"
 
 const port = parseInt(process.env.PORT || '3000', 10)
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
+
 const handle = app.getRequestHandler()
+
 
 app.prepare().then(() => {
    createServer((req, res) => {
@@ -19,7 +22,6 @@ app.prepare().then(() => {
    )
 })
 
-import { Server } from "socket.io"
 
 const io = new Server(4000, {
    transports: ["websocket", "polling"],
