@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ระบบฟอร์มข้อมูลคนไข้แบบ Real-time
 
-## Getting Started
+โปรเจกต์นี้เป็นระบบฟอร์มบันทึกข้อมูลคนไข้ที่ทำงานแบบ real-time โดยใช้ Next.js, React Hook Form และ Socket.IO สำหรับการสื่อสารแบบ real-time ระหว่างผู้ใช้งาน
 
-First, run the development server:
+## 🚀 คุณสมบัติหลัก
 
+- **Real-time Synchronization** - ข้อมูลคนไข้จะถูกอัปเดตแบบ real-time ระหว่างหน้า Patient Form และ Staff Dashboard
+- **Patient Form** - ฟอร์มกรอกข้อมูลคนไข้ครบถ้วนพร้อม validation
+- **Staff Dashboard** - หน้าจอสำหรับเจ้าหน้าที่ดูข้อมูลคนไข้แบบ live
+- **Responsive Design** - รองรับการใช้งานบนอุปกรณ์ทุกขนาดด้วย Tailwind CSS
+- **TypeScript** - พัฒนาด้วย TypeScript เพื่อความปลอดภัยและ maintainability
+
+## 🛠️ เทคโนโลยีที่ใช้
+
+- **Frontend**: Next.js 16, React 19, TypeScript
+- **Styling**: Tailwind CSS
+- **Form Management**: React Hook Form
+- **Real-time Communication**: Socket.IO
+- **Validation**: Zod
+- **Development**: ESLint
+
+## 📦 การติดตั้งและรันโปรเจกต์
+
+### 1. Clone โปรเจกต์
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd agnos-assignment
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. ติดตั้ง dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. เริ่มต้น Socket.IO Server
+เปิด terminal อีกหน้าหนึ่งและรันคำสั่ง:
+```bash
+node server/socketServer.js
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. เริ่มต้น Development Server
+```bash
+npm run dev
+```
 
-## Learn More
+### 5. เปิดแอปพลิเคชัน
+- เปิด [http://localhost:3000](http://localhost:3000) สำหรับหน้าหลัก
+- เปิด [http://localhost:3000/patient](http://localhost:3000/patient) สำหรับฟอร์มคนไข้
+- เปิด [http://localhost:3000/staff](http://localhost:3000/staff) สำหรับหน้าเจ้าหน้าที่
 
-To learn more about Next.js, take a look at the following resources:
+## 📋 การใช้งานระบบ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### สำหรับคนไข้ (Patient Form)
+1. ไปที่หน้า `/patient`
+2. กรอกข้อมูลส่วนตัวในฟอร์ม
+3. ข้อมูลจะถูกส่งไปยังหน้า Staff Dashboard แบบ real-time
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### สำหรับเจ้าหน้าที่ (Staff Dashboard)
+1. ไปที่หน้า `/staff`
+2. ดูข้อมูลคนไข้ที่กรอกแบบ live
+3. ข้อมูลจะอัปเดตทันทีเมื่อคนไข้กรอกข้อมูลใหม่
 
-## Deploy on Vercel
+## 🏗️ โครงสร้างโปรเจกต์
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+agnos-assignment/
+├── app/                    # Next.js App Router
+│   ├── patient/           # หน้าฟอร์มคนไข้
+│   ├── staff/             # หน้าเจ้าหน้าที่
+│   └── layout.tsx         # Root layout
+├── components/            # React Components
+│   ├── PatientForm.tsx    # ฟอร์มกรอกข้อมูลคนไข้
+│   └── StaffDashboard.tsx # แดชบอร์ดเจ้าหน้าที่
+├── server/               # Socket.IO Server
+│   └── socketServer.js   # Real-time server logic
+├── hooks/                # Custom React Hooks
+├── lib/                  # Utility libraries
+├── types/                # TypeScript type definitions
+└── public/               # Static assets
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 คำสั่งที่มีให้ใช้
+
+- `npm run dev` - เริ่มต้น development server
+- `npm run build` - Build โปรเจกต์สำหรับ production
+- `npm run start` - เริ่มต้น production server
+- `npm run lint` - ตรวจสอบโค้ดด้วย ESLint
+
+## 🌐 Port ที่ใช้
+
+- **Next.js App**: Port 3000
+- **Socket.IO Server**: Port 4000
+
+## 📝 ข้อมูลที่รวบรวม
+
+ฟอร์มคนไข้รวบรวมข้อมูลดังนี้:
+- ชื่อจริง, ชื่อกลาง, นามสกุล
+- วันเกิดและเพศ
+- เบอร์โทรศัพท์และอีเมล
+- ที่อยู่
+- ภาษาที่ต้องการและสัญชาติ
+- ชื่อผู้ติดต่อฉุกเฉิน
+- ศาสนา
+
+## 🤝 การมีส่วนร่วม
+
+โปรเจกต์นี้เป็นส่วนหนึ่งของการทดสอบความสามารถในการพัฒนาระบบ real-time ด้วย Next.js และ Socket.IO
