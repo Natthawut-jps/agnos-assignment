@@ -23,7 +23,7 @@
 
 ### 1. Clone โปรเจกต์
 ```bash
-git clone <repository-url>
+git clone https://github.com/Natthawut-jps/agnos-assignment.git
 cd agnos-assignment
 ```
 
@@ -32,18 +32,12 @@ cd agnos-assignment
 npm install
 ```
 
-### 3. เริ่มต้น Socket.IO Server
-เปิด terminal อีกหน้าหนึ่งและรันคำสั่ง:
-```bash
-node server/socketServer.js
-```
-
-### 4. เริ่มต้น Development Server
+### 3. เริ่มต้น Socket.IO Server + Development Server
 ```bash
 npm run dev
 ```
 
-### 5. เปิดแอปพลิเคชัน
+### 4. เปิดแอปพลิเคชัน
 - เปิด [http://localhost:3000](http://localhost:3000) สำหรับหน้าหลัก
 - เปิด [http://localhost:3000/patient](http://localhost:3000/patient) สำหรับฟอร์มคนไข้
 - เปิด [http://localhost:3000/staff](http://localhost:3000/staff) สำหรับหน้าเจ้าหน้าที่
@@ -72,7 +66,7 @@ agnos-assignment/
 │   ├── PatientForm.tsx    # ฟอร์มกรอกข้อมูลคนไข้
 │   └── StaffDashboard.tsx # แดชบอร์ดเจ้าหน้าที่
 ├── server/               # Socket.IO Server
-│   └── socketServer.js   # Real-time server logic
+│   └── server.js         # Real-time server logic + Next.js App
 ├── hooks/                # Custom React Hooks
 ├── lib/                  # Utility libraries
 ├── types/                # TypeScript type definitions
