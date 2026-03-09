@@ -83,7 +83,7 @@ agnos-assignment/
 ## 🌐 Port ที่ใช้
 
 - **Next.js App**: Port 3000
-- **Socket.IO Server**: Port 4000
+- **Socket.IO Server**: Port 3000
 
 ## 📝 ข้อมูลที่รวบรวม
 
